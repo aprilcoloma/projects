@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  font-size: 62.5%;
+  background-color: #212928;
+  padding: 40px;
+  font-family: Arial, Verdana, sans-serif; }
+
+section {
+  background-color: #17a899;
+  max-width: 520px;
+  padding: 20px 40px;
+  margin: 0 auto;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
+
+ul {
+  list-style: none;
+  margin: 20px 0 0 0;
+  padding: 0; }
+
+ul li {
+  margin: 10px 0; }
+
+ul li.hidden {
+  display: none; }
+
+ul li.active {
+  display: block; }
+
+ul li.expanded .item {
+  display: block; }
+
+.page-title {
+  font-size: 3em;
+  color: #fff;
+  text-align: center; }
+
+.type,
+.meaning {
+  display: none;
+  font-size: 1.8em; }
+
+.type {
+  margin-top: 10px;
+  color: #a2e9e1; }
+
+.meaning {
+  color: #fff;
+  font-family: Georgia, "Times New Roman"; }
+
+.word {
+  font-size: 2.3em;
+  color: #fff;
+  text-decoration: none;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic; }
+
+.word:hover {
+  text-decoration: underline; }
+
+#search-form {
+  margin: 0 auto;
+  width: 600px; }
+
+#search-input {
+  padding: 15px 20px;
+  width: 330px;
+  border: none;
+  font-size: 2em;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px; }
+
+#search-input:focus {
+  background-color: #c0f8f2; }
+
+::-moz-placeholder {
+  font-style: italic;
+  color: #b2b2b2; }
+
+::-webkit-input-placeholder {
+  font-style: italic;
+  color: #b2b2b2; }
+
+#submit-btn {
+  position: relative;
+  top: 1px;
+  left: 4px;
+  background-color: #023d37;
+  color: #fff;
+  padding: 11px 20px;
+  font-size: 2.4em;
+  text-transform: uppercase;
+  border: none;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  cursor: pointer; }
+
+#submit-btn:hover {
+  background-color: #085850; }
+
+.message {
+  display: none;
+  margin-top: 10px;
+  color: #fff;
+  padding: 6px 20px;
+  background-color: #189d8f;
+  font-size: 1.6em; }
+
+.message.active {
+  display: block; }
+
+/*# sourceMappingURL=site.css.map */
