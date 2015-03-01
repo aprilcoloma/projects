@@ -108,8 +108,7 @@ ul li.expanded .item {
   padding: 6px 20px;
   background-color: #189d8f;
   font-size: 1.6em; }
-
-.message.active {
-  display: block; }
+  .message .active {
+    display: block; }
 
 /*# sourceMappingURL=site.css.map */

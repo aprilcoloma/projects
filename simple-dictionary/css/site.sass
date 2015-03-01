@@ -22,18 +22,22 @@ ul
   padding: 0
 
 
-ul li
-  margin: 10px 0
+ul
+  li
+    margin: 10px 0
 
   
-ul li.hidden
-  display: none
+ul
+  li.hidden
+    display: none
 
-ul li.active
-  display: block
+ul
+  li.active
+    display: block
 
-ul li.expanded .item
-  display: block
+ul 
+  li.expanded .item
+    display: block
 
 .page-title
   font-size: 3em
@@ -61,8 +65,9 @@ ul li.expanded .item
   font-family: Georgia, 'Times New Roman', serif
   font-style: italic
 
-.word:hover
-  text-decoration: underline
+.word
+  &:hover
+    text-decoration: underline
 
 #search-form
   margin: 0 auto
@@ -78,8 +83,9 @@ ul li.expanded .item
   -webkit-border-radius: 8px
   border-radius: 8px
 
-#search-input:focus
-  background-color: #c0f8f2
+#search-input
+  &:focus
+    background-color: #c0f8f2
 
 ::-moz-placeholder
   font-style: italic
@@ -105,8 +111,9 @@ ul li.expanded .item
   border-radius: 8px
   cursor: pointer
 
-#submit-btn:hover
-  background-color: #085850
+#submit-btn
+  &:hover
+    background-color: #085850
 
 .message
   display: none
@@ -116,6 +123,6 @@ ul li.expanded .item
   background-color: #189d8f
   font-size: 1.6em
 
-.message.active
-  display: block
+  .active
+    display: block
 
