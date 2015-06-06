@@ -2,6 +2,7 @@
 var doc              = document,
 	calDate 	 	 = new Date(),
 	monthLabels      = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+	dayName          = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 	currentMonth     = calDate.getMonth(), // 0 - 11 (5)
 	year             = calDate.getFullYear(), // 2015	 
 	firstDate        = monthLabels[currentMonth] + " " + 1 + " " + year, // June 1 2015,
@@ -21,6 +22,7 @@ var doc              = document,
 		calendarHeader.innerHTML =  monthLabels[currentMonth] + " " + year;
 
 
+		// days counter (to be compared against the total days)
 		var count = 1;
 
 		// create rows for the weeks (approximately 6 rows)
@@ -38,6 +40,7 @@ var doc              = document,
 					count++;	
 				}
 
+				// add the rows to our table body
 				tr.appendChild(td);
 				
 			}
