@@ -7,13 +7,23 @@
 
 </head>
 <body>
-	<div class="calendar">
-		<div class="header">
-			<span class="month-year"></span>
-		</div>
+	<div id="calendar">
+		<div id="month-year"></div>
+		<table id="cal-tbl">
+			<thead class="cal-tbl-head">
+				<tr>
+					<th>Sun</th>
+					<th>Mon</th>
+					<th>Tue</th>
+					<th>Wed</th>
+					<th>Thu</th>
+					<th>Fri</th>
+					<th>Sat</th>
+				</tr>
+			</thead>
 
-		<div class="dates">
-		</div>
+			<tbody id="tbl-body"></tbody>
+		</table>
 	</div>
 	
 	<script type="text/javascript" src="js/calendar.js"></script>
