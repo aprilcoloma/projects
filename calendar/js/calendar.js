@@ -3,12 +3,13 @@ var doc              = document,
 	calDate 	 	 = new Date(),
 	calCounter       = 0,
 	monthLabels      = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-	dayName          = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+	dayName          = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+	tableBody        = doc.getElementById('tbl-body');
 	
 
 var createCalendar = function() {
 	var calendarHeader   = doc.getElementById('month-year'),
-		tableBody        = doc.getElementById('tbl-body'),
+		
 		currentMonth     = calDate.getMonth() + calCounter, // 0 - 11 (5)
 		year             = calDate.getFullYear(), // 2015	 
 		firstDate        = monthLabels[currentMonth] + " " + 1 + " " + year, // June 1 2015,
@@ -69,8 +70,9 @@ var createCalendar = function() {
 };
 
 var showNextCalendar = function() {
-	calCounter++;
-	createCalendar();
+	calCounter++; // go to the next month contents
+	tableBody.innerHTML = null; // empty the table
+	createCalendar(); // create contents again
 }
 
 createCalendar();
