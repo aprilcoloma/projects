@@ -34,7 +34,8 @@ var doc              = document,
 			for (var j = 0; j < 7; j++) {
 				var td = doc.createElement('td');
 
-				// if days are less than our total days and our rows are greater than zero, or cell is greater that our current day
+				// if days are less than our total days and our rows are greater than zero, or cell is greater that our current day, 
+				// (start displaying on the first day of the month, cells before the first day should be left blank)
 				if ( count <= totalDays && (i > 0 || j >= dayIndex) ) {
 					td.innerHTML = count;
 					count++;	
