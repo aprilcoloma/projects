@@ -24,21 +24,79 @@ var doc              = document,
 
 		// create first row
 
+		var count = 1;
+
 		for (var i = 0; i < 6; i++) {
-			if (i == dayIndex ) {
-				break;
+			var tr = doc.createElement('tr');
+
+
+			for (var j = 0; j < 7; j++) {
+				var td = doc.createElement('td');
+
+				if ( count <= totalDays && (i > 0 || j >= dayIndex) ) {
+					td.innerHTML = count;
+					count++;	
+				}
+
+				tr.appendChild(td);
+				
 			}
 
-			var td = doc.createElement('td'),
-				tr = doc.createElement('tr');
-
-			td.innerHTML = "";
-			tr.appendChild(td);
+			tableBody.appendChild(tr);
 		}
+		
 
-		tableBody.appendChild(tr);
+
+		// var count = 1;
+
+		
+		// for ( var d = 0; d <= 6; d++) {
+
+		// 	if ( d === dayIndex ) {
+		// 		break;
+		// 	}
+
+		// 	var td = doc.createElement('td');
+		// 	td.innerHTML = "blank";
+		// 	tr.appendChild(td);
+		// }
+
+		// tableBody.appendChild(tr);
 
 
+
+		// var count = 1;
+		// for (var e = 0; e <= 6; e++) {
+		// 	var td1 = doc.createElement('td');
+		// 	td1.innerHTML = count;
+		// 	count++;
+		// 	tr.appendChild(td1);
+		// }
+
+		// tableBody.appendChild(tr);
+		// // create 2nd row
+		
+
+		// // rest of the rows.
+		// for (var r = 3; r <= 6; r++) {
+		// 	tr = doc.createElement('tr');
+
+		// 	for ( var c = 0; c<=6; c++) {
+		// 		if (count > totalDays) {
+		// 			tableBody.appendChild(tr);
+		// 			return tableBody;
+		// 		}
+
+		// 		var td = doc.createElement('td');
+
+		// 		td.innerHTML = count;
+		// 		count++;
+		// 		tr.appendChild(td);
+
+		// 	}
+
+		// 	tableBody.appendChild(tr);
+		// }
 		
 
 
