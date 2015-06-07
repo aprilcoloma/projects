@@ -22,7 +22,6 @@ var createCalendar = function() {
 	if ( currentMonth > monthLabels.length-1 ) {
 		currentMonth = 0;
 		year++;
-		console.log('current month: ' + currentMonth);
 	}
 
 	firstDate        = monthLabels[currentMonth] + " " + 1 + " " + year; // June 1 2015 
@@ -89,28 +88,13 @@ var changeCalendar = {
 
 	resetCalendar: function() {
 		calDate = new Date(year+1, 0);
+
+		// reset our calendar counter
 		calCounter = 0;
 
-		console.log( ' current calendar counter: ' + calCounter );
-		var monthsAwayUntilNextYear = monthLabels.length - currentMonth;
-		var temp = (monthLabels.length-1) + currentMonth;
-		var triggerReset = monthsAwayUntilNextYear + currentMonth;
-
-
-		// if ( triggerReset === monthLabels.length ) {
-		// 	currentMonth = 0;
-		// }
-
-		console.log( 'total months in a year: ' + monthLabels.length );
-		console.log( 'how many months away from next year: ' + ( monthsAwayUntilNextYear ) );
-		console.log( 'so far how many months we consumed: ' + currentMonth );
-		// console.log( temp );
-
 		tableBody.innerHTML = null; // empty the table
-		// calDate = new Date(2016, 0);
 		createCalendar();
 		
-		console.log(calDate);
 		
 	}
 
