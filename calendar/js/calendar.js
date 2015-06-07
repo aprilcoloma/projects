@@ -28,10 +28,10 @@ var createCalendar = function() {
 	firstDayOfMonth  = new Date(firstDate).toDateString(); // Mon Jun 01 2015,
 	firstDay		 = firstDayOfMonth.substring(0,3); // Mon
 	dayIndex		 = dayName.indexOf(firstDay); // 1 = Mon
-	totalDays   	 = new Date(year, currentMonth+1, 0).getDate();
+	totalDays   	 = new Date(year, currentMonth+1, 0).getDate() + "";
 	calNavLink       = '';
-		
 
+		
 	// display the month and the year
 	calendarHeader.innerHTML =  monthLabels[currentMonth] + " " + year;
 
@@ -51,12 +51,25 @@ var createCalendar = function() {
 			// (start displaying on the first day of the month, cells before the first day should be left blank)
 			if ( count <= totalDays && (i > 0 || j >= dayIndex) ) {
 
-				td.innerHTML = count;
-				count++;				
+				td.innerHTML = count + "";
+				count++;	
+
+				var today = new Date();
+					dd = today.getDate() + "",
+					mm = today.getMonth(),
+					yyyy = today.getFullYear();
+
+
+				if ( td.innerHTML === dd && mm === currentMonth && yyyy === year ) {
+					td.classList.add('today');
+				}
+
+
 			} else {
 				td.innerHTML = '&nbsp';
 				td.classList.add('empty-cell');
 			}
+
 
 
 			// add the rows to our table body
