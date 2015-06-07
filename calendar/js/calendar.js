@@ -50,13 +50,14 @@ var createCalendar = function() {
 			// if days are less than our total days and our rows are greater than zero, or cell is greater that our current day, 
 			// (start displaying on the first day of the month, cells before the first day should be left blank)
 			if ( count <= totalDays && (i > 0 || j >= dayIndex) ) {
+
 				td.innerHTML = count;
-				count++;	
+				count++;				
 			}
+
 
 			// add the rows to our table body
 			tr.appendChild(td);
-			
 		}
 
 		// display the days
