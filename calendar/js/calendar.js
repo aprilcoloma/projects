@@ -134,6 +134,8 @@ window.addEventListener('load', function() {
 		nextNav = doc.getElementById('next-nav');
 
 	calNav.addEventListener('click', function(e) {
+
+	
 		calNavLink = e.target.id;
 
 		tableBody.innerHTML = null; // empty the table
@@ -146,6 +148,7 @@ window.addEventListener('load', function() {
 
 
 	}, false);
+
 });
 
 
