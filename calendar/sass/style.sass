@@ -21,6 +21,7 @@ body
 
       .cal-navigation
         span
+          display: block
           position: absolute
           top: 14px
           cursor: pointer
@@ -34,6 +35,9 @@ body
 
           &.next
             right: 20px
+
+          &:focus
+            background-color: transparent
 
     .month-year
       color: #fff
@@ -63,7 +67,6 @@ body
             text-align: center
             border-bottom: 1px solid #f6f6f6
             border-right: 1px solid #f6f6f6
-
 
   .extra-page
     position: absolute

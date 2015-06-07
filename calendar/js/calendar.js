@@ -53,6 +53,9 @@ var createCalendar = function() {
 
 				td.innerHTML = count;
 				count++;				
+			} else {
+				td.innerHTML = '&nbsp';
+				td.classList.add('empty-cell');
 			}
 
 
