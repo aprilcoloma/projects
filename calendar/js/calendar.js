@@ -82,11 +82,21 @@ var changeCalendar = {
 
 	showPreviousCalendar: function() {
 		calCounter--; // go to the previous month contents
-		console.log(calCounter);
-		createCalendar(); // create contents again
+		currentMonth--;
+
+		if ( currentMonth < 0 ) {
+			currentMonth = monthLabels.length-1;
+			this.setToPreviousCalendar();
+		} else {
+			createCalendar(); // create contents again	
+		}
+
+		
 	},
 
 	resetCalendar: function() {
+
+		// add a year to our current year
 		calDate = new Date(year+1, 0);
 
 		// reset our calendar counter
@@ -94,8 +104,17 @@ var changeCalendar = {
 
 		tableBody.innerHTML = null; // empty the table
 		createCalendar();
-		
-		
+	},
+
+	setToPreviousCalendar: function() {
+
+		// substract a year from our current year, and set the month to december
+		calDate = new Date(year-1, 11);
+
+		// reset our calendar counter
+		calCounter = 0;
+		tableBody.innerHTML = null; // empty the table
+		createCalendar();
 	}
 
 };
@@ -104,6 +123,8 @@ var changeCalendar = {
 
 // initialize the calendar
 window.addEventListener('load', function() {
+
+	// display the current month
 	createCalendar();
 
 	// calendar navigation
@@ -123,7 +144,7 @@ window.addEventListener('load', function() {
 		}
 
 
-	},false);
+	}, false);
 });
 
 
