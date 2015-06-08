@@ -54,7 +54,7 @@ var createCalendar = function() {
 				td.innerHTML = count + "";
 				count++;	
 
-				var today = new Date();
+				var today = new Date(),
 					dd = today.getDate() + "",
 					mm = today.getMonth(),
 					yyyy = today.getFullYear();
