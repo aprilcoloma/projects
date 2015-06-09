@@ -67,6 +67,7 @@ body
 
         tr
           td
+            position: relative
             padding: 12px 6px
             color: #434343
             font-size: 1.3em
@@ -77,6 +78,22 @@ body
           .today
             color: #ff5d70
             box-shadow: inset 0 0 1px #ff5d70
+
+          .event-list
+            position: absolute
+            top: -9px
+            left: -35px
+            width: 100%
+
+          li.event
+            display: block
+            float: left
+            width: 5px
+            height: 5px
+            margin-right: 4px
+            background-color: #fb5e71
+            border-radius: 50%
+
 
   .extra-page
     position: absolute
