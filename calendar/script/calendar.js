@@ -3,7 +3,7 @@ var doc              = document,
     calDate          = new Date(),
     calCounter       = 0,
 
-    currentMonth, firstDate, year, firstDayOfMonth, firstDay, dayIndex, totalDays, calNavLink,
+    currentMonth, firstDate, year, firstDayOfMonth, firstDay, dayIndex, totalDays, calNavLink, eventList, eventDate, events, calendarDate, eventListItem, eventListDate,
 
     monthLabels      = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 
                         'October', 'November', 'December'],
@@ -59,15 +59,18 @@ var createCalendar = function() {
 
 
                 // add events if date has a match from our event list dates
-                var calendarDate = monthLabels[currentMonth] + " " + ( count ) + ", "+ year,
-                    eventDate = eventList[0].date,
-                    events    = eventList[0].events;
+                for (var k = 0; k < eventList.length; k++ ) {
 
-                console.log( eventList[0].date );
+                    eventListItem = eventList[k].events;
+                    eventListDate = eventList[k].date;
+                    
+                }
+
+                calendarDate = monthLabels[currentMonth] + " " + ( count ) + ", "+ year;
+                eventDate = eventListDate;
+                events    = eventListItem;
 
                 if ( eventDate === calendarDate ) {
-
-
 
                     var itemList = doc.createElement('ul');
                     itemList.classList.add('event-list');
@@ -81,8 +84,6 @@ var createCalendar = function() {
                         eventIndicator.classList.add( 'event' );
                     }
 
-                    
-                    
                 }
 
                 count++;

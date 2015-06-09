@@ -7,7 +7,6 @@ var eventList = [
             'Buy new pencils and other art materials'
         ]
     },
-
     {
         'date': 'June 12, 2015',
         'events': [
@@ -15,5 +14,5 @@ var eventList = [
             'Buy new phone',
             'Buy new pencils and other art materials'
         ]
-    },
+    }
 ];
