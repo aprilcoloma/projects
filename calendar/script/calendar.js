@@ -58,30 +58,29 @@ var createCalendar = function() {
                 td.appendChild(dateWrapper);
 
 
-                // add events if date has a match from our event list dates
+                // loop our events first
                 for (var k = 0; k < eventList.length; k++ ) {
-
                     eventListItem = eventList[k].events;
                     eventListDate = eventList[k].date;
-                    
-                }
 
-                calendarDate = monthLabels[currentMonth] + " " + ( count ) + ", "+ year;
-                eventDate = eventListDate;
-                events    = eventListItem;
 
-                if ( eventDate === calendarDate ) {
+                    calendarDate = monthLabels[currentMonth] + " " + ( count ) + ", "+ year;
 
-                    var itemList = doc.createElement('ul');
-                    itemList.classList.add('event-list');
-                    
-                    for ( var eventItem = 0; eventItem < events.length; eventItem++ ) {
-                        var eventIndicator = doc.createElement('li');
+                    // match the dates from our events with our calendar dates
+                    if ( eventListDate === calendarDate ) {
 
-                        itemList.appendChild( eventIndicator );
+                        var itemList = doc.createElement('ul');
+                        itemList.classList.add('event-list');
+                        
+                        for ( var eventItem = 0; eventItem < eventListItem.length; eventItem++ ) {
+                            var eventIndicator = doc.createElement('li');
 
-                        td.insertBefore( itemList, dateWrapper.nextSibling );
-                        eventIndicator.classList.add( 'event' );
+                            itemList.appendChild( eventIndicator );
+
+                            td.insertBefore( itemList, dateWrapper.nextSibling );
+                            eventIndicator.classList.add( 'event' );
+                        }
+
                     }
 
                 }
