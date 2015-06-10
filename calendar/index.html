@@ -1,46 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Calendar</title>
-	<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
 
-	<div id="main-container">
-		<div id="calendar">
-			<header class="cal-header">
-				<div id="month-year" class="month-year"></div>
-						
-				<div id="cal-navigation" class="cal-navigation">
-					<span id="prev-nav" class="prev">&lsaquo;</span>	
-					<span id="next-nav" class="next">&rsaquo;</span>	
-				</div>
-			</header>
-		
-			<table id="cal-tbl" class="cal-tbl">
-				<thead class="tbl-head">
-					<tr>
-						<th>Sun</th>
-						<th>Mon</th>
-						<th>Tue</th>
-						<th>Wed</th>
-						<th>Thu</th>
-						<th>Fri</th>
-						<th>Sat</th>
-					</tr>
-				</thead>
-		
-				<tbody id="tbl-body" class="tbl-body"></tbody>
-			</table>
+    <div id="main-container">
+        <section id="cal-events">
+            <h2 id="date-today" class="date-today"></h2>
 
-			<span class="extra-page"></span>
-			<span class="extra-page last-page"></span>
-		</div>
-	</div>
-	
-	<script type="text/javascript" src="script/calendar.js"></script>
-	<script type="text/javascript" src="script/data.js"></script>
+            <div id="event-wrapper"></div>
+        </section>
+
+        <div id="calendar">
+            <header class="cal-header">
+                <div id="month-year" class="month-year"></div>
+                        
+                <div id="cal-navigation" class="cal-navigation">
+                    <span id="prev-nav" class="prev">&lsaquo;</span>    
+                    <span id="next-nav" class="next">&rsaquo;</span>    
+                </div>
+            </header>
+        
+            <table id="cal-tbl" class="cal-tbl">
+                <thead class="tbl-head">
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+        
+                <tbody id="tbl-body" class="tbl-body"></tbody>
+            </table>
+
+            <span class="extra-page"></span>
+            <span class="extra-page last-page"></span>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="script/calendar.js"></script>
+    <script type="text/javascript" src="script/data.js"></script>
 </body>
 </html>
