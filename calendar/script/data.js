@@ -5,17 +5,17 @@ var eventList = [
             {
                 'title': 'Go to the bank',
                 'description': 'Go to the bank to withdraw',
-                'time': '10:00 am'
+                'calTime': '10:00 am'
             },
             {
                 'title': 'Buy new phone',
                 'description': 'Buy a new phone: iPhone or Samsung',
-                'time': '10:30 am'
+                'calTime': '10:30 am'
             },
             {
                 'title': 'Buy new pencils and other art materials',
                 'description': 'Buy new pencils and other art materials for a project',
-                'time': '11:00 am'
+                'calTime': '11:00 am'
             }
         ]
 
@@ -27,7 +27,7 @@ var eventList = [
             {
                 'title': 'Meeting with the bosses',
                 'description': 'Meeting with the bosses for a new project',
-                'time': '08:00 am'
+                'calTime': '08:00 am'
             }
         ]
     },
@@ -37,12 +37,12 @@ var eventList = [
             {
                 'title': 'Shopping',
                 'description': 'Buy new clothes',
-                'time': '09:00 am'
+                'calTime': '09:00 am'
             },
             {
                 'title': 'Take a nap',
                 'description': 'Take a nap for an hour',
-                'time': '10:00 am'
+                'calTime': '10:00 am'
             }
         ]
     },
@@ -52,7 +52,7 @@ var eventList = [
             {
                 'title': 'Attend a party',
                 'description': 'Attend a holloween party',
-                'time': '10:00 pm'
+                'calTime': '10:00 pm'
             }
         ]
     },
