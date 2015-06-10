@@ -4,10 +4,14 @@ var doc              = document,
     calCounter       = 0,
 
     currentMonth, firstDate, year, firstDayOfMonth, firstDay, dayIndex, totalDays, calNavLink, eventList, eventDate, events, calendarDate, eventListItem, eventListDate,
+    td, count, today, dd, mm, yyyy, c,
 
     monthLabels      = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 
                         'October', 'November', 'December'],
-    dayName          = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+
+    dayName          = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    dateToday        = doc.getElementById('date-today'),
+    eventWrapper     = doc.getElementById('event-wrapper'),
     tableBody        = doc.getElementById('tbl-body'),
     calendarHeader   = doc.getElementById( 'month-year' );
 
@@ -36,7 +40,7 @@ var createCalendar = function() {
     calendarHeader.innerHTML =  monthLabels[currentMonth] + " " + year;
 
     // days counter (to be compared against the total days)
-    var count = 1;
+    count = 1;
 
     // create rows for the weeks (approximately 6 rows)
     for (var i = 0; i < 6; i++) {
@@ -45,7 +49,7 @@ var createCalendar = function() {
 
         // create cells for the days
         for (var j = 0; j < 7; j++) {
-            var td = doc.createElement('td');
+            td = doc.createElement('td');
 
             // if days are less than our total days and our rows are greater than zero, or cell is greater that our current day, 
             // (start displaying on the first day of the month, cells before the first day should be left blank)
@@ -63,54 +67,56 @@ var createCalendar = function() {
                     eventListItem = eventList[k].events;
                     eventListDate = eventList[k].date;
 
-                    console.log( eventListDate );
-
 
                     calendarDate = monthLabels[currentMonth] + " " + ( count ) + ", "+ year;
-                    var eventCounter = doc.createElement('span');
-                    eventCounter.classList.add( 'event' );
 
+                    var eventCounter = doc.createElement('span');
+
+                    eventCounter.classList.add( 'event' );
 
                     // match the dates from our events with our calendar dates
                     if ( eventListDate === calendarDate ) {
 
-                        for ( var eventItem = 0; eventItem < eventListItem.length; eventItem++ ) {
-
-                            
+                        for ( var eventItem = 0; eventItem < eventListItem.length; eventItem++ ) { 
                             eventCounter.innerHTML = eventListItem.length;
-                            // td.insertBefore( eventCounter, dateWrapper.nextSibling );
+                            td.classList.add('with-event');
                         }
 
                         td.insertBefore( eventCounter, dateWrapper.nextSibling );
-
-                        // var itemList = doc.createElement('ul');
-                        // itemList.classList.add('event-list');
-                        
-                        // for ( var eventItem = 0; eventItem < eventListItem.length; eventItem++ ) {
-                        //     var eventIndicator = doc.createElement('li');
-
-                        //     itemList.appendChild( eventIndicator );
-
-                        //     td.insertBefore( itemList, dateWrapper.nextSibling );
-                        //     eventIndicator.classList.add( 'event' );
-                        // }
 
                     }
 
                 }
 
+
+                // Check if there's an event today, then display it
+                if ( eventListDate !== calendarDate ) {
+                    eventWrapper.innerHTML = "No event today.";
+                }
+
+                // check the cell if it has 'with-event class' then go to our eventRevealer function
+                if ( td.className === "with-event") {
+                    eventRevealer();
+                }
+
                 count++;
 
-
-                var today = new Date(),
-                    dd = today.getDate() + "",
-                    mm = today.getMonth(),
-                    yyyy = today.getFullYear();
+                today = new Date();
+                dd = today.getDate() + "";
+                mm = today.getMonth();
+                yyyy = today.getFullYear();
 
 
                 if ( dateWrapper.innerHTML === dd && mm === currentMonth && yyyy === year ) {
                     td.classList.add('today');
                 }
+
+                 // Calendar Events
+                dateToday.innerHTML = dayName[today.getDay()] + ", " + monthLabels[mm] + " " + dd;
+
+
+                
+
 
 
             } else {
@@ -119,6 +125,7 @@ var createCalendar = function() {
             }
 
 
+           
 
             // add the rows to our table body
             tr.appendChild(td);
@@ -127,6 +134,9 @@ var createCalendar = function() {
         // display the days
         tableBody.appendChild(tr);
     }
+
+
+
     
 };
 
@@ -183,6 +193,41 @@ var changeCalendar = {
     }
 
 };
+
+
+var eventRevealer = function() {
+    // eventWrapper.innerHTML = null;
+    var newDateToMatch = dateToday.innerHTML = monthLabels[mm] + " " + c + ", " + yyyy;
+
+    td.addEventListener( 'click', function(e) {
+        var eventDay = parseInt(e.currentTarget.innerHTML.substring(18, 20)),
+            eventCompleteDate = monthLabels[currentMonth] + " " + eventDay + ", " + yyyy;
+
+        for (var m = 0; m < eventList.length; m++ ) {
+            var eventDateToMatch = eventList[m].date;
+
+            // console.log( eventDateToMatch );
+            // console.log( eventCompleteDate );
+
+            if ( eventDateToMatch === eventCompleteDate ) {
+                // console.log( eventDateToMatch );
+                eventWrapper.innerHTML = null;
+
+                var title = eventList[m].events[0].title;
+                eventWrapper.innerHTML = title;
+                // console.log( currentMonth + 1 );
+            }
+
+
+        }
+    });
+
+
+    // console.log( eventListDate );
+    // console.log( dateToday.innerHTML = dayName[today.getDay()] + ", " + monthLabels[mm] + " " + dd );
+
+};
+
 
 
 
