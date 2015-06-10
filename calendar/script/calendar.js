@@ -63,23 +63,37 @@ var createCalendar = function() {
                     eventListItem = eventList[k].events;
                     eventListDate = eventList[k].date;
 
+                    console.log( eventListDate );
+
 
                     calendarDate = monthLabels[currentMonth] + " " + ( count ) + ", "+ year;
+                    var eventCounter = doc.createElement('span');
+                    eventCounter.classList.add( 'event' );
+
 
                     // match the dates from our events with our calendar dates
                     if ( eventListDate === calendarDate ) {
 
-                        var itemList = doc.createElement('ul');
-                        itemList.classList.add('event-list');
-                        
                         for ( var eventItem = 0; eventItem < eventListItem.length; eventItem++ ) {
-                            var eventIndicator = doc.createElement('li');
 
-                            itemList.appendChild( eventIndicator );
-
-                            td.insertBefore( itemList, dateWrapper.nextSibling );
-                            eventIndicator.classList.add( 'event' );
+                            
+                            eventCounter.innerHTML = eventListItem.length;
+                            // td.insertBefore( eventCounter, dateWrapper.nextSibling );
                         }
+
+                        td.insertBefore( eventCounter, dateWrapper.nextSibling );
+
+                        // var itemList = doc.createElement('ul');
+                        // itemList.classList.add('event-list');
+                        
+                        // for ( var eventItem = 0; eventItem < eventListItem.length; eventItem++ ) {
+                        //     var eventIndicator = doc.createElement('li');
+
+                        //     itemList.appendChild( eventIndicator );
+
+                        //     td.insertBefore( itemList, dateWrapper.nextSibling );
+                        //     eventIndicator.classList.add( 'event' );
+                        // }
 
                     }
 
