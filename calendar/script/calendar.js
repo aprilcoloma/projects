@@ -196,7 +196,7 @@ var changeCalendar = {
 
 
 var eventRevealer = function() {
-    // eventWrapper.innerHTML = null;
+
     var newDateToMatch = dateToday.innerHTML = monthLabels[mm] + " " + c + ", " + yyyy;
 
     td.addEventListener( 'click', function(e) {
@@ -210,12 +210,45 @@ var eventRevealer = function() {
             // console.log( eventCompleteDate );
 
             if ( eventDateToMatch === eventCompleteDate ) {
-                // console.log( eventDateToMatch );
+
                 eventWrapper.innerHTML = null;
 
-                var title = eventList[m].events[0].title;
-                eventWrapper.innerHTML = title;
-                // console.log( currentMonth + 1 );
+                var eventUL = doc.createElement( 'ul' ),
+                    eventULItem;
+
+                for ( var o = 0; o < eventList[m].events.length; o++ ) {
+                    eventULItem = doc.createElement('li');
+
+                    var titleWrapper = doc.createElement('p'),
+                        descWrapper = doc.createElement('p'),
+                        timeWrapper = doc.createElement('p');
+
+                    timeWrapper.classList.add( 'time-wrapper' );
+                    descWrapper.innerHTML = eventList[m].events[o].description;
+                    timeWrapper.innerHTML = eventList[m].events[o].calTime;
+
+                    eventULItem.appendChild( descWrapper );
+                    eventULItem.appendChild( timeWrapper, descWrapper.nextSibling );
+    
+                    eventUL.appendChild( eventULItem );
+
+                }
+
+                eventWrapper.appendChild( eventUL );
+
+                
+                // console.log( eventList[m].events.length );
+
+                // console.log( eventList.length );
+                // console.log( eventList[0] );
+                // var title, 
+                //     eventsObj = eventList[m].events;
+
+                // console.log( eventsObj );
+
+               
+
+                // eventWrapper.innerHTML = title;
             }
 
 
