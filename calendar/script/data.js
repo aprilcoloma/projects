@@ -1,6 +1,6 @@
 var eventList = [
     {
-        'date': 'June 9, 2015',
+        'date': 'June 11, 2015',
         'events': [
             {
                 'title': 'Go to the bank',
