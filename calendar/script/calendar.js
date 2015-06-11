@@ -57,6 +57,11 @@ var createCalendar = function() {
 
                 var dateWrapper = doc.createElement( 'span' );
 
+                today = new Date();
+                dd = today.getDate() + "";
+                mm = today.getMonth();
+                yyyy = today.getFullYear();
+
                 dateWrapper.classList.add('day');
                 dateWrapper.innerHTML = count;
                 td.appendChild(dateWrapper);
@@ -77,9 +82,41 @@ var createCalendar = function() {
                     // match the dates from our events with our calendar dates
                     if ( eventListDate === calendarDate ) {
 
+                        var list = doc.createElement( 'ul');
+
                         for ( var eventItem = 0; eventItem < eventListItem.length; eventItem++ ) { 
                             eventCounter.innerHTML = eventListItem.length;
+
                             td.classList.add('with-event');
+
+
+                            if ( td.className === 'with-event') {
+
+                                if ( monthLabels[mm] + " " + dateWrapper.innerHTML + ", " + yyyy === monthLabels[mm] + " " + dd + ", " + yyyy ) {
+
+                                    eventWrapper.innerHTML = null;
+                             
+                                    var listItem = doc.createElement( 'li'),
+                                        descriptionWrapper = doc.createElement('p'),
+                                        dateWrapper1 = doc.createElement('p');
+
+                                    descriptionWrapper.innerHTML = eventListItem[eventItem].description;
+                                    dateWrapper1.innerHTML = eventListItem[eventItem].calTime;
+                                    dateWrapper1.classList.add( 'time-wrapper' );
+
+                                    listItem.appendChild( descriptionWrapper );
+                                    listItem.insertBefore( dateWrapper1, descriptionWrapper.nextSibling );
+
+                                   
+                                    list.appendChild( listItem );
+                                    eventWrapper.appendChild( list );
+
+
+                                } else {
+                                    eventRevealer();
+                                }
+                            }
+
                         }
 
                         td.insertBefore( eventCounter, dateWrapper.nextSibling );
@@ -88,34 +125,16 @@ var createCalendar = function() {
 
                 }
 
-
-                // Check if there's an event today, then display it
-                if ( eventListDate !== calendarDate ) {
-                    eventWrapper.innerHTML = "No event today.";
-                }
-
-                // check the cell if it has 'with-event class' then go to our eventRevealer function
-                if ( td.className === "with-event") {
-                    eventRevealer();
-                }
-
                 count++;
-
-                today = new Date();
-                dd = today.getDate() + "";
-                mm = today.getMonth();
-                yyyy = today.getFullYear();
 
 
                 if ( dateWrapper.innerHTML === dd && mm === currentMonth && yyyy === year ) {
                     td.classList.add('today');
                 }
 
-                 // Calendar Events
+
+                // Calendar Events
                 dateToday.innerHTML = dayName[today.getDay()] + ", " + monthLabels[mm] + " " + dd;
-
-
-                
 
 
 
@@ -195,19 +214,22 @@ var changeCalendar = {
 };
 
 
+var listEvents = function() {
+
+};
+
 var eventRevealer = function() {
 
     var newDateToMatch = dateToday.innerHTML = monthLabels[mm] + " " + c + ", " + yyyy;
+
 
     td.addEventListener( 'click', function(e) {
         var eventDay = parseInt(e.currentTarget.innerHTML.substring(18, 20)),
             eventCompleteDate = monthLabels[currentMonth] + " " + eventDay + ", " + yyyy;
 
         for (var m = 0; m < eventList.length; m++ ) {
-            var eventDateToMatch = eventList[m].date;
 
-            // console.log( eventDateToMatch );
-            // console.log( eventCompleteDate );
+            var eventDateToMatch = eventList[m].date;
 
             if ( eventDateToMatch === eventCompleteDate ) {
 
@@ -236,28 +258,11 @@ var eventRevealer = function() {
 
                 eventWrapper.appendChild( eventUL );
 
-                
-                // console.log( eventList[m].events.length );
-
-                // console.log( eventList.length );
-                // console.log( eventList[0] );
-                // var title, 
-                //     eventsObj = eventList[m].events;
-
-                // console.log( eventsObj );
-
-               
-
-                // eventWrapper.innerHTML = title;
             }
 
 
         }
     });
-
-
-    // console.log( eventListDate );
-    // console.log( dateToday.innerHTML = dayName[today.getDay()] + ", " + monthLabels[mm] + " " + dd );
 
 };
 
