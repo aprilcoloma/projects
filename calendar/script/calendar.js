@@ -94,6 +94,8 @@ var createCalendar = function() {
 
                                 if ( monthLabels[mm] + " " + dateWrapper.innerHTML + ", " + yyyy === monthLabels[mm] + " " + dd + ", " + yyyy ) {
 
+                                    td.click( eventRevealer() );
+
                                     eventWrapper.innerHTML = null;
                              
                                     var listItem = doc.createElement( 'li'),
@@ -220,7 +222,7 @@ var listEvents = function() {
 
 var eventRevealer = function() {
 
-    var newDateToMatch = dateToday.innerHTML = monthLabels[mm] + " " + c + ", " + yyyy;
+    var newDateToMatch = dateToday.innerHTML = monthLabels[mm] + " " + c + ", " + yyyy; 
 
 
     td.addEventListener( 'click', function(e) {
