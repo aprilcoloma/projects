@@ -1,5 +1,17 @@
 var eventList = [
     {
+        'date': 'June 8, 2015',
+        'events': [
+            {
+                'title': 'Sleep all day',
+                'description': 'Sleep all day',
+                'calTime': '6:00 am - 5:00 pm'
+            }
+        ]
+
+
+    },
+    {
         'date': 'June 11, 2015',
         'events': [
             {
