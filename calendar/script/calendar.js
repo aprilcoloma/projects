@@ -9,7 +9,7 @@ var doc              = document,
     monthLabels      = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 
                         'October', 'November', 'December'],
 
-    dayName          = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    dayName          = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     dateToday        = doc.getElementById('date-today'),
     eventWrapper     = doc.getElementById('event-wrapper'),
     tableBody        = doc.getElementById('tbl-body'),
@@ -117,6 +117,8 @@ var createCalendar = function() {
                                 } else {
                                     eventRevealer();
                                 }
+                            } else {
+                                eventWrapper.innerHTML = "No event today.";
                             }
 
                         }
@@ -224,10 +226,16 @@ var eventRevealer = function() {
 
     var newDateToMatch = dateToday.innerHTML = monthLabels[mm] + " " + c + ", " + yyyy; 
 
+    
 
     td.addEventListener( 'click', function(e) {
         var eventDay = parseInt(e.currentTarget.innerHTML.substring(18, 20)),
-            eventCompleteDate = monthLabels[currentMonth] + " " + eventDay + ", " + yyyy;
+            eventCompleteDate = monthLabels[currentMonth] + " " + eventDay + ", " + yyyy,
+            calDayName  = new Date( ( monthLabels[currentMonth] ) + " " + eventDay + ", " + yyyy );
+
+
+        dateToday.innerHTML = dayName[calDayName.getDay()] + ", " + monthLabels[currentMonth] + " " + eventDay;
+
 
         for (var m = 0; m < eventList.length; m++ ) {
 
