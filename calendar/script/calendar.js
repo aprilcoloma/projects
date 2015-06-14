@@ -138,7 +138,7 @@ var createCalendar = function() {
 
                                     // check if we have an event today
                                     if ( dateWrapper.innerHTML === dd && mm === currentMonth && yyyy === year ) {
-
+                                        eventWrapper.innerHTML = null;
                                         var listItem = doc.createElement( 'li'),
                                             descriptionWrapper = doc.createElement('p'),
                                             dateWrapper1 = doc.createElement('p');
@@ -157,9 +157,7 @@ var createCalendar = function() {
                                         eventWrapper.innerHTML = null;
                                         eventWrapper.innerHTML = "No event today.";
                                     }
-
-
-                                } 
+                                }
                             }
 
                         }
@@ -258,8 +256,9 @@ var changeCalendar = {
 
 };
 
+
+
 var eventRevealer = function() {
-    
 
     var dayFromCell, monthToMatch;
 
@@ -291,7 +290,7 @@ var eventRevealer = function() {
             eventULItem = doc.createElement('li'),
             descriptionWrapper = doc.createElement( 'p' ),
             calDayName  = new Date( ( monthLabels[currentMonth] ) + " " + dayFromCell + ", " + yyyy );        
-            
+
         dateToday.innerHTML = dayName[calDayName.getDay()] + ", " + monthLabels[currentMonth] + " " + dayFromCell;
         // console.log( calDayName );
 
