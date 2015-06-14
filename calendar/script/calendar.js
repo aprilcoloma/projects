@@ -57,8 +57,6 @@ var createCalendar = function() {
 
                 var dateWrapper = doc.createElement( 'span' );
 
-
-
                 today = new Date();
                 dd = today.getDate() + "";
                 mm = today.getMonth();
@@ -67,8 +65,6 @@ var createCalendar = function() {
                 dateWrapper.classList.add('day');
                 dateWrapper.innerHTML = count;
                 td.appendChild(dateWrapper);
-
-                // count++;
 
 
                 // loop our events first
@@ -83,13 +79,6 @@ var createCalendar = function() {
                     yr = eventListDate.substring(0,4),
                     mt = eventListDate.substring(5,7),
                     dy = eventListDate.substring(8,11);
-
-                    // console.log( 'eventListDate: ' + eventListDate );
-                    // console.log( 'yr: ' + yr );
-                    // console.log( 'mt: ' + mt );
-                    // console.log( 'dy: ' + dy );
-
-                    // console.log( 'year: ' + yr );
                         
 
                     if ( mt.charAt(0) < 1 ) {
@@ -101,11 +90,7 @@ var createCalendar = function() {
                         dy = dy.substring(1);
                     }
 
-
                     newConvertedDate = monthLabels[mt-1] + " " + dy + ", " + yr;
-                    // console.log( 'newConvertedDate: ' + newConvertedDate );
-                    // console.log( 'calendar date: ' + monthLabels[currentMonth] + " " + count + ", " + year );
-                    // console.log( count );
                     //new date format ::end
 
 
@@ -167,10 +152,10 @@ var createCalendar = function() {
                     }
 
                 }
+
                 count++;
 
                 
-
                 if ( dateWrapper.innerHTML === dd && mm === currentMonth && yyyy === year ) {
                     td.classList.add('today');
                 }
@@ -292,7 +277,6 @@ var eventRevealer = function() {
             calDayName  = new Date( ( monthLabels[currentMonth] ) + " " + dayFromCell + ", " + yyyy );        
 
         dateToday.innerHTML = dayName[calDayName.getDay()] + ", " + monthLabels[currentMonth] + " " + dayFromCell;
-        // console.log( calDayName );
 
         // get data from our event list
         for ( var eventData = 0; eventData < eventList.length; eventData++) {
@@ -300,6 +284,7 @@ var eventRevealer = function() {
 
             if ( dateFromCellToMatch === eventListDate ) {
                 eventWrapper.innerHTML = null;
+                var calTimeArr =   [];
 
                 for ( var o = 0; o < eventList[eventData].events.length; o++ ) {
                 
@@ -308,6 +293,13 @@ var eventRevealer = function() {
                     var titleWrapper = doc.createElement('p'),
                         descWrapper = doc.createElement('p'),
                         timeWrapper = doc.createElement('p');
+                        
+
+                    // compare dates from the events object
+                    eventList[eventData].events.sort( function( a, b ) {
+                        return new Date('1970/01/01 ' + a.calTime) - new Date('1970/01/01 ' + b.calTime);
+                    });
+
 
                     timeWrapper.classList.add( 'time-wrapper' );
                     descWrapper.innerHTML = eventList[eventData].events[o].description;
