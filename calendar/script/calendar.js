@@ -4,7 +4,7 @@ var doc              = document,
     calCounter       = 0,
 
     currentMonth, firstDate, year, firstDayOfMonth, firstDay, dayIndex, totalDays, calNavLink, eventList, eventDate, events, calendarDate, eventListItem, eventListDate,
-    td, count, today, dd, mm, yyyy, c,
+    td, count, today, dd, mm, yyyy, c, yr, mt, dy, newConvertedDate,
 
     monthLabels      = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 
                         'October', 'November', 'December'],
@@ -57,6 +57,8 @@ var createCalendar = function() {
 
                 var dateWrapper = doc.createElement( 'span' );
 
+
+
                 today = new Date();
                 dd = today.getDate() + "";
                 mm = today.getMonth();
@@ -66,6 +68,8 @@ var createCalendar = function() {
                 dateWrapper.innerHTML = count;
                 td.appendChild(dateWrapper);
 
+                // count++;
+
 
                 // loop our events first
                 for (var k = 0; k < eventList.length; k++ ) {
@@ -73,14 +77,48 @@ var createCalendar = function() {
                     eventListDate = eventList[k].date;
 
 
+
+                    //new date format ::start
+
+                    yr = eventListDate.substring(0,4),
+                    mt = eventListDate.substring(5,7),
+                    dy = eventListDate.substring(8,11);
+
+                    // console.log( 'eventListDate: ' + eventListDate );
+                    // console.log( 'yr: ' + yr );
+                    // console.log( 'mt: ' + mt );
+                    // console.log( 'dy: ' + dy );
+
+                    // console.log( 'year: ' + yr );
+                        
+
+                    if ( mt.charAt(0) < 1 ) {
+                        mt = mt.substring(1);
+                    } 
+
+
+                    if ( dy.charAt(0) < 1 ) {
+                        dy = dy.substring(1);
+                    }
+
+
+                    newConvertedDate = monthLabels[mt-1] + " " + dy + ", " + yr;
+                    // console.log( 'newConvertedDate: ' + newConvertedDate );
+                    // console.log( 'calendar date: ' + monthLabels[currentMonth] + " " + count + ", " + year );
+                    // console.log( count );
+                    //new date format ::end
+
+
                     calendarDate = monthLabels[currentMonth] + " " + ( count ) + ", "+ year;
+
 
                     var eventCounter = doc.createElement('span');
 
                     eventCounter.classList.add( 'event' );
 
+
                     // match the dates from our events with our calendar dates
-                    if ( eventListDate === calendarDate ) {
+                    if ( newConvertedDate ===  monthLabels[currentMonth] + " " + count + ", " + year  ) {
 
                         var list = doc.createElement( 'ul');
 
@@ -91,34 +129,37 @@ var createCalendar = function() {
 
 
                             if ( td.className === 'with-event') {
-
-                                if ( monthLabels[mm] + " " + dateWrapper.innerHTML + ", " + yyyy === monthLabels[mm] + " " + dd + ", " + yyyy ) {
-
+                
+                                if ( monthLabels[mm] + " " + dateWrapper.innerHTML + ", " + yyyy === monthLabels[mm] + " " + dy + ", " + yyyy ) {
+                                    
+                                    
+                                    eventWrapper.innerHTML = null;
                                     td.click( eventRevealer() );
 
-                                    eventWrapper.innerHTML = null;
-                             
-                                    var listItem = doc.createElement( 'li'),
-                                        descriptionWrapper = doc.createElement('p'),
-                                        dateWrapper1 = doc.createElement('p');
+                                    // check if we have an event today
+                                    if ( dateWrapper.innerHTML === dd && mm === currentMonth && yyyy === year ) {
 
-                                    descriptionWrapper.innerHTML = eventListItem[eventItem].description;
-                                    dateWrapper1.innerHTML = eventListItem[eventItem].calTime;
-                                    dateWrapper1.classList.add( 'time-wrapper' );
+                                        var listItem = doc.createElement( 'li'),
+                                            descriptionWrapper = doc.createElement('p'),
+                                            dateWrapper1 = doc.createElement('p');
 
-                                    listItem.appendChild( descriptionWrapper );
-                                    listItem.insertBefore( dateWrapper1, descriptionWrapper.nextSibling );
+                                        descriptionWrapper.innerHTML = eventListItem[eventItem].description;
+                                        dateWrapper1.innerHTML = eventListItem[eventItem].calTime;
+                                        dateWrapper1.classList.add( 'time-wrapper' );
 
-                                   
-                                    list.appendChild( listItem );
-                                    eventWrapper.appendChild( list );
+                                        listItem.appendChild( descriptionWrapper );
+                                        listItem.insertBefore( dateWrapper1, descriptionWrapper.nextSibling );
+
+                                       
+                                        list.appendChild( listItem );
+                                        eventWrapper.appendChild( list );
+                                    } else {
+                                        eventWrapper.innerHTML = null;
+                                        eventWrapper.innerHTML = "No event today.";
+                                    }
 
 
-                                } else {
-                                    eventRevealer();
-                                }
-                            } else {
-                                eventWrapper.innerHTML = "No event today.";
+                                } 
                             }
 
                         }
@@ -128,9 +169,9 @@ var createCalendar = function() {
                     }
 
                 }
-
                 count++;
 
+                
 
                 if ( dateWrapper.innerHTML === dd && mm === currentMonth && yyyy === year ) {
                     td.classList.add('today');
@@ -217,38 +258,52 @@ var changeCalendar = {
 
 };
 
-
-var listEvents = function() {
-
-};
-
 var eventRevealer = function() {
-
-    var newDateToMatch = dateToday.innerHTML = monthLabels[mm] + " " + c + ", " + yyyy; 
-
     
 
+    var dayFromCell, monthToMatch;
+
     td.addEventListener( 'click', function(e) {
-        var eventDay = parseInt(e.currentTarget.innerHTML.substring(18, 20)),
-            eventCompleteDate = monthLabels[currentMonth] + " " + eventDay + ", " + yyyy,
-            calDayName  = new Date( ( monthLabels[currentMonth] ) + " " + eventDay + ", " + yyyy );
+
+        dayFromCell = parseInt(e.currentTarget.innerHTML.substring(18, 20)) + " ",
+        monthToMatch = currentMonth+1;
+
+        monthToMatch = monthToMatch + "";
+
+        if ( (dayFromCell.length-1) < 2 ) {
+            dayFromCell = "0" + dayFromCell;
+        }
+
+        if ( (monthToMatch.length-1) < 2 ) {
+            monthToMatch = "0" + monthToMatch;
+        }
+
+        if ( (monthToMatch.length) > 2 ) {
+            monthToMatch = monthToMatch.substring(1);
+        }
+
+        // complete date from our clicked cell
+        var dateFromCellToMatch = yyyy + "-" + (monthToMatch) + "-" + dayFromCell;
+        dateFromCellToMatch = dateFromCellToMatch.replace(/\s/g, ''); // remove white space
 
 
-        dateToday.innerHTML = dayName[calDayName.getDay()] + ", " + monthLabels[currentMonth] + " " + eventDay;
+        var eventUL = doc.createElement( 'ul' ),
+            eventULItem = doc.createElement('li'),
+            descriptionWrapper = doc.createElement( 'p' ),
+            calDayName  = new Date( ( monthLabels[currentMonth] ) + " " + dayFromCell + ", " + yyyy );        
+            
+        dateToday.innerHTML = dayName[calDayName.getDay()] + ", " + monthLabels[currentMonth] + " " + dayFromCell;
+        // console.log( calDayName );
 
+        // get data from our event list
+        for ( var eventData = 0; eventData < eventList.length; eventData++) {
+            var eventListDate = eventList[eventData].date;
 
-        for (var m = 0; m < eventList.length; m++ ) {
-
-            var eventDateToMatch = eventList[m].date;
-
-            if ( eventDateToMatch === eventCompleteDate ) {
-
+            if ( dateFromCellToMatch === eventListDate ) {
                 eventWrapper.innerHTML = null;
 
-                var eventUL = doc.createElement( 'ul' ),
-                    eventULItem;
-
-                for ( var o = 0; o < eventList[m].events.length; o++ ) {
+                for ( var o = 0; o < eventList[eventData].events.length; o++ ) {
+                
                     eventULItem = doc.createElement('li');
 
                     var titleWrapper = doc.createElement('p'),
@@ -256,25 +311,204 @@ var eventRevealer = function() {
                         timeWrapper = doc.createElement('p');
 
                     timeWrapper.classList.add( 'time-wrapper' );
-                    descWrapper.innerHTML = eventList[m].events[o].description;
-                    timeWrapper.innerHTML = eventList[m].events[o].calTime;
+                    descWrapper.innerHTML = eventList[eventData].events[o].description;
+                    timeWrapper.innerHTML = eventList[eventData].events[o].calTime;
 
                     eventULItem.appendChild( descWrapper );
                     eventULItem.appendChild( timeWrapper, descWrapper.nextSibling );
-    
+
                     eventUL.appendChild( eventULItem );
-
                 }
-
-                eventWrapper.appendChild( eventUL );
 
             }
 
+            eventWrapper.appendChild( eventUL );  
+
 
         }
+
     });
 
-};
+
+}
+
+
+
+// var eventRevealer = function() {
+     
+
+//     // var newDateToMatch = dateToday.innerHTML = monthLabels[mm] + " " + c + ", " + yyyy; 
+
+//     // bydate = eventList.slice(0);
+
+//     // bydate.sort(function(a,b) {
+//     //     return a.dateEnd - b.dateEnd;
+//     // });
+
+//     /* NEW REVEALER ::start */
+
+//     var eventDay = parseInt(td.innerHTML.substring(18, 20)) + " ";
+
+//     if ( (eventDay.length-1) < 2 ) {
+//         eventDay = "0" + eventDay;
+//     }
+
+
+//     var newMonth = currentMonth;
+//     newMonth = currentMonth + 1;
+//     newMonth = newMonth + "";
+
+//     if ( (newMonth.length-1) < 2 ) {
+//         newMonth = "0" + newMonth;
+//     }
+
+    
+    
+//     td.addEventListener( 'click', function(e) {
+//         var eventDay = parseInt(e.currentTarget.innerHTML.substring(18, 20)) + " ";
+
+//         var eventCompleteDate = yyyy + "-" + newMonth + "-" + eventDay;
+//         // calDayName  = new Date( ( monthLabels[newMonth] ) + " " + eventDay + ", " + yyyy );
+
+        
+//         var eventUL = doc.createElement( 'ul' ),
+//             eventULItem;
+
+//         for (var eventData = 0; eventData < eventList.length; eventData++) {
+
+//             var datesFromData = eventList[eventData].date,
+//                 datesFromCell = eventCompleteDate;
+
+
+//             if ( datesFromData === datesFromCell ) {
+//                 eventWrapper.innerHTML = null;
+
+//                 eventULItem = doc.createElement('li');
+//                 // descWrapper.innerHTML = eventList[m].events[o].description;
+//                 eventULItem.innerHTML = eventList[eventData].title;
+
+//                 eventULItem.appendChild( eventULItem );
+
+//             }
+
+//             eventWrapper.appendChild( eventUL );
+
+//         }
+
+
+//     });
+
+
+
+//     // for (var m = 0; m < eventList.length; m++ ) {
+
+//     //     var eventDateToMatch = eventList[m].date;
+
+//     //     if ( eventDateToMatch === eventCompleteDate ) {
+
+//     //         eventWrapper.innerHTML = null;
+
+//     //         var eventUL = doc.createElement( 'ul' ),
+//     //             eventULItem;
+
+//     //         for ( var o = 0; o < eventList[m].events.length; o++ ) {
+//     //             eventULItem = doc.createElement('li');
+
+//     //             var titleWrapper = doc.createElement('p'),
+//     //                 descWrapper = doc.createElement('p'),
+//     //                 timeWrapper = doc.createElement('p');
+
+//     //             timeWrapper.classList.add( 'time-wrapper' );
+//     //             descWrapper.innerHTML = eventList[m].events[o].description;
+//     //             timeWrapper.innerHTML = eventList[m].events[o].calTime;
+
+//     //             eventULItem.appendChild( descWrapper );
+//     //             eventULItem.appendChild( timeWrapper, descWrapper.nextSibling );
+
+//     //             eventUL.appendChild( eventULItem );
+
+//     //         }
+
+//     //         eventWrapper.appendChild( eventUL );
+
+//     //     }
+
+
+//     // }
+    
+
+//     /* NEW REVEALER ::end */
+
+//     // console.log( 'by date' );
+//     // console.log( bydate );
+//     // var eventDay = parseInt(td.innerHTML.substring(18, 20)) + " ";
+//     // console.log( eventDay );
+    
+
+//     // td.addEventListener( 'click', function(e) {
+//     //     var eventDay = parseInt(e.currentTarget.innerHTML.substring(18, 20)) + " ";
+//     //     console.log( td );
+
+
+//         // if ( (eventDay.length-1) < 2 ) {
+//         //     eventDay = "0" + eventDay;
+//         // }
+
+        
+//         // currentMonth = currentMonth + 1;
+//         // currentMonth = currentMonth + "";
+
+//         // if ( (currentMonth.length-1) < 2 ) {
+//         //     currentMonth = "0" + currentMonth;
+//         // }
+
+//         // var eventCompleteDate = yyyy + "-" + currentMonth + "-" + eventDay,
+//         //     // eventCompleteDate = yr + "-" + ,
+//         //     calDayName  = new Date( ( monthLabels[currentMonth] ) + " " + eventDay + ", " + yyyy );        
+
+
+//         // dateToday.innerHTML = dayName[calDayName.getDay()] + ", " + monthLabels[currentMonth] + " " + eventDay;
+//         // console.log( calDayName );
+
+
+//         // for (var m = 0; m < eventList.length; m++ ) {
+
+//         //     var eventDateToMatch = eventList[m].date;
+
+//         //     if ( eventDateToMatch === eventCompleteDate ) {
+
+//         //         eventWrapper.innerHTML = null;
+
+//         //         var eventUL = doc.createElement( 'ul' ),
+//         //             eventULItem;
+
+//         //         for ( var o = 0; o < eventList[m].events.length; o++ ) {
+//         //             eventULItem = doc.createElement('li');
+
+//         //             var titleWrapper = doc.createElement('p'),
+//         //                 descWrapper = doc.createElement('p'),
+//         //                 timeWrapper = doc.createElement('p');
+
+//         //             timeWrapper.classList.add( 'time-wrapper' );
+//         //             descWrapper.innerHTML = eventList[m].events[o].description;
+//         //             timeWrapper.innerHTML = eventList[m].events[o].calTime;
+
+//         //             eventULItem.appendChild( descWrapper );
+//         //             eventULItem.appendChild( timeWrapper, descWrapper.nextSibling );
+    
+//         //             eventUL.appendChild( eventULItem );
+
+//         //         }
+
+//         //         eventWrapper.appendChild( eventUL );
+
+//         //     }
+
+
+//         // }
+//     // });
+
+// };
 
 
 
