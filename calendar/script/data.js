@@ -1,40 +1,34 @@
 var eventList = [
     {
-        'date': 'June 8, 2015',
+        'date': '2015-06-12',
+        // 'date': 'June 10, 2015',
         'events': [
             {
-                'title': 'Sleep all day',
-                'description': 'Sleep all day',
-                'calTime': '6:00 am - 5:00 pm'
+                'title': 'Finish the JS Calendar Project',
+                'description': 'Finish the JS Calendar Project',
+                'calTime': '06:00 am'
+            },
+            {
+                'title': 'Join a Fun Run',
+                'description': 'Join a Fun Run',
+                'calTime': '09:00 am'
             }
         ]
-
-
     },
     {
-        'date': 'June 11, 2015',
+        'date': '2015-06-10',
+        // 'date': 'June 10, 2015',
         'events': [
             {
-                'title': 'Go to the bank',
-                'description': 'Go to the bank to withdraw',
-                'calTime': '10:00 am'
-            },
-            {
-                'title': 'Buy new phone',
-                'description': 'Buy a new phone: iPhone or Samsung',
-                'calTime': '10:30 am'
-            },
-            {
-                'title': 'Buy new pencils and other art materials',
-                'description': 'Buy new pencils and other art materials for a project',
-                'calTime': '11:00 am'
+                'title': 'A walk in the park',
+                'description': 'A walk in the park',
+                'calTime': '06:00 am'
             }
         ]
-
-
     },
     {
-        'date': 'June 12, 2015',
+        'date': '2015-07-12',
+        // 'date': 'July 12, 2015',
         'events': [
             {
                 'title': 'Meeting with the bosses',
@@ -44,7 +38,21 @@ var eventList = [
         ]
     },
     {
-        'date': 'July 10, 2015',
+
+        'date': '2015-06-08',
+        'events': [
+            {
+                'title': 'Sleep all day',
+                'description': 'Sleep all day',
+                'calTime': '6:00 am - 5:00 pm'
+            }
+        ]
+
+    },
+    
+    
+    {
+        'date': '2015-07-10',
         'events': [
             {
                 'title': 'Shopping',
@@ -59,7 +67,7 @@ var eventList = [
         ]
     },
     {
-        'date': 'November 1, 2015',
+        'date': '2015-11-01',
         'events': [
             {
                 'title': 'Attend a party',
@@ -68,4 +76,14 @@ var eventList = [
             }
         ]
     },
+    {
+        'date': '2015-12-24',
+        'events': [
+            {
+                'title': 'Merry Xmas',
+                'description': 'Merry Xmas',
+                'calTime': '11:59 pm'
+            }
+        ]
+    }
 ];
