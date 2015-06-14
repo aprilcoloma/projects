@@ -1,18 +1,24 @@
 var eventList = [
     {
-        'date': '2015-06-12',
+        'date': '2015-06-13',
         // 'date': 'June 10, 2015',
         'events': [
             {
-                'title': 'Finish the JS Calendar Project',
-                'description': 'Finish the JS Calendar Project',
-                'calTime': '06:00 am'
-            },
-            {
                 'title': 'Join a Fun Run',
                 'description': 'Join a Fun Run',
-                'calTime': '09:00 am'
+                'calTime': '9:45 am'
+            },
+            {
+                'title': 'Finish the JS Calendar Project',
+                'description': 'Finish the JS Calendar Project',
+                'calTime': '05:00 am'
+            },
+            {
+                'title': 'Eat breakfast',
+                'description': 'Eat breakfast',
+                'calTime': '06:20 am'
             }
+            
         ]
     },
     {
@@ -44,7 +50,7 @@ var eventList = [
             {
                 'title': 'Sleep all day',
                 'description': 'Sleep all day',
-                'calTime': '6:00 am - 5:00 pm'
+                'calTime': '6:00 am - 6:00 pm'
             }
         ]
 
