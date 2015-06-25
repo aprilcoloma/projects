@@ -82,15 +82,15 @@ var createCalendar = function() {
                         monthStringify = "0" + monthStringify;
                     }
 
-                    var calendarDate = year + "-" + monthStringify + "-" + count;
+                    var calendarDate = year + "-" + monthStringify + "-" + count,
+                        eventRange = eventDayEnd - eventDay;
 
-                    if ( calendarDate === strippedDateStart || calendarDate === strippedDateEnd ) {
+                    if ( calendarDate === strippedDateStart || calendarDate === strippedDateEnd || count > eventDay && count < eventDayEnd ) {
                         td.classList.add('with-event');
 
                         td.setAttribute('date-start', strippedDateStart);
 
                         if ( eventListDateEnd) {
-                            var eventRange = new Date(strippedDateEnd).getDate() - eventDay;
                             td.setAttribute('date-end', strippedDateEnd);
                             td.setAttribute('day-range', eventRange);
                             
@@ -98,14 +98,7 @@ var createCalendar = function() {
                             eventListDateEnd = "";
                         }
 
-                        
                     }
-
-                    if ( count > eventDay && count < eventDayEnd ) {
-                        td.classList.add('with-event');
-                    }
-
-
 
                 }
 
