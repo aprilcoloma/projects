@@ -1,0 +1,142 @@
+body {
+  background-color: #d1d1d1;
+  font-size: 62.5%; }
+
+#main-container {
+  margin: 100px auto 0;
+  max-width: 750px; }
+  #main-container #calendar {
+    position: relative;
+    display: block;
+    float: right;
+    max-width: 400px;
+    margin: 0;
+    font-family: Arial, Tahoma, Verdana, sans-serif; }
+    #main-container #calendar .cal-header {
+      position: relative;
+      padding: 20px;
+      background-color: #ababab;
+      text-align: center;
+      font-size: 1.8em; }
+      #main-container #calendar .cal-header .cal-navigation span {
+        display: block;
+        position: absolute;
+        top: 14px;
+        cursor: pointer;
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.4em;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; }
+        #main-container #calendar .cal-header .cal-navigation span.prev {
+          left: 20px;
+          transform: rotateX(-10deg); }
+        #main-container #calendar .cal-header .cal-navigation span.next {
+          right: 20px; }
+        #main-container #calendar .cal-header .cal-navigation span:focus {
+          background-color: transparent; }
+    #main-container #calendar .month-year {
+      color: #fff; }
+    #main-container #calendar .cal-tbl {
+      width: 400px;
+      background-color: #fff;
+      border-collapse: collapse; }
+      #main-container #calendar .cal-tbl .tbl-head th {
+        color: #939393;
+        padding: 10px;
+        text-transform: uppercase;
+        font-size: 1.2em;
+        background-color: #f2f2f2; }
+      #main-container #calendar .cal-tbl .tbl-body {
+        border-bottom: 1px solid #e6e6e6; }
+        #main-container #calendar .cal-tbl .tbl-body tr td {
+          position: relative;
+          padding: 12px 6px;
+          color: #434343;
+          font-size: 1.3em;
+          text-align: center;
+          border-bottom: 1px solid #f6f6f6;
+          border-right: 1px solid #f6f6f6; }
+        #main-container #calendar .cal-tbl .tbl-body tr .today {
+          color: #ff5d70;
+          box-shadow: inset 0 0 1px #ff5d70; }
+        #main-container #calendar .cal-tbl .tbl-body tr .with-event {
+          cursor: pointer; }
+          #main-container #calendar .cal-tbl .tbl-body tr .with-event:hover {
+            background-color: #f7f7f7; }
+        #main-container #calendar .cal-tbl .tbl-body tr .event-list {
+          position: absolute;
+          top: -9px;
+          left: -35px;
+          width: 100%; }
+        #main-container #calendar .cal-tbl .tbl-body tr .event {
+          position: absolute;
+          top: 2px;
+          right: 0;
+          display: block;
+          float: left;
+          width: 16px;
+          height: 16px;
+          margin-right: 4px;
+          background-color: #fb5e71;
+          color: #fff;
+          font-size: 0.9em;
+          border-radius: 50%; }
+        #main-container #calendar .cal-tbl .tbl-body tr .event-indicator {
+          position: absolute;
+          top: 2px;
+          right: 2px;
+          display: block;
+          width: 6px;
+          height: 6px;
+          background-color: #fb5e71;
+          border-radius: 50%; }
+  #main-container .extra-page {
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 6px;
+    display: block;
+    background-color: #f3f3f3;
+    width: 99%;
+    border-bottom: 1px solid #d8d8d8; }
+  #main-container .last-page {
+    bottom: -14px;
+    background-color: #e0e0e0; }
+  #main-container #cal-events {
+    display: inline-block;
+    padding: 20px;
+    width: 310px;
+    height: 299px;
+    background-color: #e63c51; }
+    #main-container #cal-events .date-today {
+      padding-bottom: 14px;
+      color: #ffdee2;
+      font-family: Arial, Tahoma, Verdana;
+      font-weight: 400;
+      font-size: 2em;
+      border-bottom: 1px dotted #ff7186; }
+    #main-container #cal-events .event-wrapper {
+      color: #fff;
+      font-size: 1.4em;
+      font-family: Arial, Tahoma, Verdana; }
+      #main-container #cal-events .event-wrapper ul {
+        padding: 0;
+        margin: 0; }
+        #main-container #cal-events .event-wrapper ul li {
+          list-style: none;
+          padding: 10px 0;
+          border-bottom: 1px dotted #fa5a72; }
+          #main-container #cal-events .event-wrapper ul li p {
+            margin: 4px 0; }
+          #main-container #cal-events .event-wrapper ul li .time-wrapper {
+            color: #ffadb9; }
+        #main-container #cal-events .event-wrapper ul li:last-child {
+          border-bottom: none; }
+
+/*# sourceMappingURL=style.css.map */
