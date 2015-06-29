@@ -111,25 +111,6 @@ var createCalendar = function() {
                         }
                     }
 
-                    // IMPORTANT CHANGES: compare month to month; year to year
-                    // if ( calendarDate === strippedDateStart || calendarDate === strippedDateEnd || count > eventDay && count < eventDayEnd && eventCalendarMonth === currentMonth + 1 && year === eventFullYear ) {
-                    //     // console.log( 'current calendar month and year: ' + ( currentMonth + 1 ) + " " + year );
-                    //     // console.log( 'event month and year detected: ' + ( new Date(strippedDateStart).getMonth() + 1 ) + " " + eventFullYear );
-
-                    //     td.classList.add('with-event');
-
-                    //     td.setAttribute('date-start', strippedDateStart);
-
-                    //     if ( eventListDateEnd) {
-                    //         td.setAttribute('date-end', strippedDateEnd);
-                    //         td.setAttribute('day-range', eventRange);
-                            
-                    //     } else {
-                    //         eventListDateEnd = "";
-                    //     }
-
-                    // }
-
                 }
 
                 if ( td.className === 'with-event' ) {
