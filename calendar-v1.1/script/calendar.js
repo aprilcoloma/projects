@@ -94,6 +94,9 @@ var createCalendar = function() {
                         count2 = "0" + count;
                     }
 
+                    var eventCounter = doc.createElement('span');
+                    eventCounter.classList.add( 'event' );
+
                     var eventCalendarMonth = new Date(strippedDateStart).getMonth() + 1;
 
                     if ( eventCalendarMonth === ( currentMonth + 1 ) && eventFullYear === year && eventDay === count || count > eventDay && count <= eventDayEnd && eventCalendarMonth === ( currentMonth + 1 ) && eventFullYear === year ) {
@@ -109,16 +112,41 @@ var createCalendar = function() {
                         } else {
                             eventListDateEnd = "";
                         }
+
+                        if ( td.className === 'with-event' ) {
+                            var eventIndicator = doc.createElement('span');
+
+                            eventIndicator.classList.add('event-indicator');
+                            td.insertBefore( eventIndicator, dateWrapper.nextSibling );
+
+                            // if 'with-event' class is present, and event day is today, display the events
+                            var eventListWrapper = doc.createElement('ul'),
+                                elementListItem = doc.createElement('li');
+
+                            eventWrapper.innerHTML = null;
+                            
+                            if ( strippedDateStart === yyyy + "-" + monthStringify + "-" + dd ) {                                
+                                var descriptionWrapper = doc.createElement('p'),
+                                    listDateWrapper = doc.createElement('p');
+
+                                descriptionWrapper.innerHTML = eventList[k].description;
+                                elementListItem.appendChild(descriptionWrapper);
+
+                            } else {
+                                eventWrapper.innerHTML = "No event today.";
+                            }
+
+                            eventListWrapper.appendChild(elementListItem);
+                            eventWrapper.appendChild(eventListWrapper);
+
+
+                        }
                     }
 
+
                 }
 
-                if ( td.className === 'with-event' ) {
-                    var eventIndicator = doc.createElement('span');
-
-                    eventIndicator.classList.add('event-indicator');
-                    td.insertBefore( eventIndicator, dateWrapper.nextSibling );
-                }
+                
 
                 // add days
                 count++;
