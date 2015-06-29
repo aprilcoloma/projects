@@ -37,5 +37,10 @@ var eventList = [
         "title": "Go to bookstore",
         "description": "Go to bookstore",
         "dateStart": "2015-08-19 11:00:00"
+    },
+    {
+        "title": "Sleep all day!!",
+        "description": "Sleep all day!!",
+        "dateStart": "2016-01-02 06:00:00"
     }
 ];
