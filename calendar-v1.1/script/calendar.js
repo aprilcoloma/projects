@@ -124,7 +124,7 @@ var createCalendar = function() {
                                 elementListItem = doc.createElement('li');
 
                             eventWrapper.innerHTML = null;
-                            
+
                             if ( strippedDateStart === yyyy + "-" + monthStringify + "-" + dd ) {                                
                                 var descriptionWrapper = doc.createElement('p'),
                                     listDateWrapper = doc.createElement('p');
@@ -138,7 +138,6 @@ var createCalendar = function() {
 
                             eventListWrapper.appendChild(elementListItem);
                             eventWrapper.appendChild(eventListWrapper);
-
 
                         }
                     }
