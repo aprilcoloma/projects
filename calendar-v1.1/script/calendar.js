@@ -76,6 +76,8 @@ var createCalendar = function() {
                         eventMonth = monthLabels[new Date(strippedDateStart).getMonth()],
                         eventDayEnd = new Date(strippedDateEnd).getDate();
 
+                    // console.log( 'event month and year detected: ' + ( new Date(strippedDateStart).getMonth() + 1 ) + " " + eventFullYear );
+
                     var monthStringify = (currentMonth + 1) + "";
 
                     if ( monthStringify.length < 2 ) {
@@ -83,9 +85,19 @@ var createCalendar = function() {
                     }
 
                     var calendarDate = year + "-" + monthStringify + "-" + count,
-                        eventRange = eventDayEnd - eventDay;
+                        eventRange = eventDayEnd - eventDay,
+                        calendarMonth = new Date(strippedDateStart).getMonth() + 1;
 
-                    if ( calendarDate === strippedDateStart || calendarDate === strippedDateEnd || count > eventDay && count < eventDayEnd ) {
+                    var count2;
+
+                    if ( (count + "").length < 2 ) {
+                        count2 = "0" + count;
+                    }
+
+                    var eventCalendarMonth = new Date(strippedDateStart).getMonth() + 1;
+
+                    if ( eventCalendarMonth === ( currentMonth + 1 ) && eventFullYear === year && eventDay === count || count > eventDay && count <= eventDayEnd && eventCalendarMonth === ( currentMonth + 1 ) && eventFullYear === year ) {
+                        
                         td.classList.add('with-event');
 
                         td.setAttribute('date-start', strippedDateStart);
@@ -97,8 +109,26 @@ var createCalendar = function() {
                         } else {
                             eventListDateEnd = "";
                         }
-
                     }
+
+                    // IMPORTANT CHANGES: compare month to month; year to year
+                    // if ( calendarDate === strippedDateStart || calendarDate === strippedDateEnd || count > eventDay && count < eventDayEnd && eventCalendarMonth === currentMonth + 1 && year === eventFullYear ) {
+                    //     // console.log( 'current calendar month and year: ' + ( currentMonth + 1 ) + " " + year );
+                    //     // console.log( 'event month and year detected: ' + ( new Date(strippedDateStart).getMonth() + 1 ) + " " + eventFullYear );
+
+                    //     td.classList.add('with-event');
+
+                    //     td.setAttribute('date-start', strippedDateStart);
+
+                    //     if ( eventListDateEnd) {
+                    //         td.setAttribute('date-end', strippedDateEnd);
+                    //         td.setAttribute('day-range', eventRange);
+                            
+                    //     } else {
+                    //         eventListDateEnd = "";
+                    //     }
+
+                    // }
 
                 }
 
@@ -116,6 +146,9 @@ var createCalendar = function() {
                 if ( dateWrapper.innerHTML === dd && mm === currentMonth && yyyy === year ) {
                     td.classList.add('today');
                 }
+
+                // Calendar Events
+                dateToday.innerHTML = dayName[today.getDay()] + ", " + monthLabels[mm] + " " + dd;
 
 
             } else {
