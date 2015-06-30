@@ -252,6 +252,7 @@ var eventRevealer = function() {
             getDateEnd = e.currentTarget.getAttribute('date-end'),
             dayFromCell = parseInt(e.currentTarget.innerHTML.substring(18, 20) + "");
 
+
         // get data from our event list
         var eventItem;
         for (eventItem = 0; eventItem < eventList.length; eventItem++) {
@@ -264,16 +265,37 @@ var eventRevealer = function() {
 
             if ( dateStart === getDateStart ) {
                 eventWrapper.innerHTML = null;
+
+                // description
                 descWrapper.innerHTML = eventList[eventItem].description;
                 descWrapper.classList.add('description-wrapper');
-                timeDateWrapper.innerHTML = dateTools.timeStripper(eventList[eventItem].dateStart);
+
+                // time
+                // var hour = dateTools.timeStripper(eventList[eventItem].dateStart).substring(0,2),
+                var finalTime, timeText, compareTime, hourEnd, convertedHour;
+
+                hour = dateTools.timeStripper(eventList[eventItem].dateStart);
+                hourEnd = hour.indexOf(":");
+                convertedHour = hour.substr(0, hourEnd);
+                compareTime = convertedHour % 12 || 12;
+
+                timeText = convertedHour < 12 ? " AM" : " PM";
+
+                // finalTime = dateTools.timeStripper(eventList[eventItem].dateStart) + " " + timeText;
+                finalTime = compareTime + hour.substr(hourEnd, 3) + timeText;
+
+                timeDateWrapper.innerHTML = finalTime;
                 timeDateWrapper.classList.add('time-wrapper');
+
+                // add data to our html
                 elementListItem.appendChild(descWrapper);
                 elementListItem.appendChild(timeDateWrapper, descWrapper.nextSibling);
+
             }
 
             eventListWrapper.appendChild(elementListItem);
             eventWrapper.appendChild(eventListWrapper);
+            
         }
 
         // var calDay = new Date(getDateStart).toDateString().substring(0,3);
