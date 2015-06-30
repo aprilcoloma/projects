@@ -114,6 +114,8 @@ var createCalendar = function() {
                         }
 
                         if ( td.className === 'with-event' ) {
+
+                            td.click( eventRevealer() );
                             var eventIndicator = doc.createElement('span');
 
                             eventIndicator.classList.add('event-indicator');
@@ -125,7 +127,7 @@ var createCalendar = function() {
 
                             eventWrapper.innerHTML = null;
 
-                            if ( strippedDateStart === yyyy + "-" + monthStringify + "-" + dd ) {                                
+                            if ( strippedDateStart === yyyy + "-" + monthStringify + "-" + dd ) {
                                 var descriptionWrapper = doc.createElement('p'),
                                     listDateWrapper = doc.createElement('p');
 
@@ -141,7 +143,6 @@ var createCalendar = function() {
 
                         }
                     }
-
 
                 }
 
@@ -241,6 +242,25 @@ var changeCalendar = {
         createCalendar();
     }
 
+};
+
+
+var eventRevealer = function() {
+
+    td.addEventListener('click', function(e) {
+        var getDateStart = e.currentTarget.getAttribute('date-start'),
+            getDateEnd = e.currentTarget.getAttribute('date-end');
+
+        // get data from our event list
+        var eventItem;
+        for (eventItem = 0; eventItem < eventList.length; eventItem++) {
+            var dateStart = dateTools.dateStripper(eventList[eventItem].dateStart);
+
+            if ( dateStart === getDateStart ) {
+                console.log( eventList[eventItem].title );
+            }
+        }
+    });
 };
 
 
