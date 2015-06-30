@@ -249,7 +249,8 @@ var eventRevealer = function() {
 
     td.addEventListener('click', function(e) {
         var getDateStart = e.currentTarget.getAttribute('date-start'),
-            getDateEnd = e.currentTarget.getAttribute('date-end');
+            getDateEnd = e.currentTarget.getAttribute('date-end'),
+            dayFromCell = parseInt(e.currentTarget.innerHTML.substring(18, 20) + "");
 
         // get data from our event list
         var eventItem;
@@ -272,6 +273,12 @@ var eventRevealer = function() {
             eventListWrapper.appendChild(elementListItem);
             eventWrapper.appendChild(eventListWrapper);
         }
+
+        // var calDay = new Date(getDateStart).toDateString().substring(0,3);
+        var calDay = new Date(getDateStart),
+            calDayName  = new Date( ( monthLabels[currentMonth] ) + " " + dayFromCell + ", " + yyyy );
+            
+        dateToday.innerHTML = calDayName.toDateString().substring(0,3) + ", " + monthLabels[currentMonth] + " " + dayFromCell;
     });
 };
 
