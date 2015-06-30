@@ -265,7 +265,9 @@ var eventRevealer = function() {
             if ( dateStart === getDateStart ) {
                 eventWrapper.innerHTML = null;
                 descWrapper.innerHTML = eventList[eventItem].description;
-                timeDateWrapper.innerHTML = eventList[eventItem].dateStart;
+                descWrapper.classList.add('description-wrapper');
+                timeDateWrapper.innerHTML = dateTools.timeStripper(eventList[eventItem].dateStart);
+                timeDateWrapper.classList.add('time-wrapper');
                 elementListItem.appendChild(descWrapper);
                 elementListItem.appendChild(timeDateWrapper, descWrapper.nextSibling);
             }
@@ -277,7 +279,7 @@ var eventRevealer = function() {
         // var calDay = new Date(getDateStart).toDateString().substring(0,3);
         var calDay = new Date(getDateStart),
             calDayName  = new Date( ( monthLabels[currentMonth] ) + " " + dayFromCell + ", " + yyyy );
-            
+
         dateToday.innerHTML = calDayName.toDateString().substring(0,3) + ", " + monthLabels[currentMonth] + " " + dayFromCell;
     });
 };
