@@ -254,11 +254,23 @@ var eventRevealer = function() {
         // get data from our event list
         var eventItem;
         for (eventItem = 0; eventItem < eventList.length; eventItem++) {
-            var dateStart = dateTools.dateStripper(eventList[eventItem].dateStart);
+            var dateStart = dateTools.dateStripper(eventList[eventItem].dateStart),
+                eventListWrapper = doc.createElement('ul'),
+                elementListItem = doc.createElement('li'),
+                titleWrapper = doc.createElement('p'),
+                descWrapper = doc.createElement('p'),
+                timeDateWrapper = doc.createElement('p');
 
             if ( dateStart === getDateStart ) {
-                console.log( eventList[eventItem].title );
+                eventWrapper.innerHTML = null;
+                descWrapper.innerHTML = eventList[eventItem].description;
+                timeDateWrapper.innerHTML = eventList[eventItem].dateStart;
+                elementListItem.appendChild(descWrapper);
+                elementListItem.appendChild(timeDateWrapper, descWrapper.nextSibling);
             }
+
+            eventListWrapper.appendChild(elementListItem);
+            eventWrapper.appendChild(eventListWrapper);
         }
     });
 };
